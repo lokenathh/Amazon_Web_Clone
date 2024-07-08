@@ -31,7 +31,7 @@ cart.forEach((cartItem) => {
     matchingProduct.id
   }">
             <div class="delivery-date">
-              Delivery date: ${dateString} //changes
+              Delivery date: ${dateString}
             </div>
 
             <div class="cart-item-details-grid">
