@@ -1,3 +1,13 @@
+export function getDeliveryOption(deliveryOptionId){
+    let selectedOption = deliveryOptions[0]; // Default to the first option
+    deliveryOptions.forEach((option) => {
+        if (option.id == deliveryOptionId) {
+            selectedOption = option; // Assign to selectedOption instead of deliveryOptions
+        }
+    });
+    return selectedOption;
+}
+
 export const deliveryOptions=[
     {
         id:'1',
@@ -15,3 +25,5 @@ export const deliveryOptions=[
         priceCents:999
     }
 ]
+
+
