@@ -3,6 +3,7 @@ import { getProduct, products } from "../../data/products.js";
 import { deliveryOptions, getDeliveryOption } from "../../data/deliveryOptions.js";
 import dayjs from "https://unpkg.com/dayjs@1.11.10/esm/index.js";
 import { renderPaymentSummary } from "./paymentSummary.js";
+import { formatCurrency } from "../utils/money.js";
 
 export function renderOrderSummary() {
   let cartSummaryHTML = "";
@@ -21,13 +22,13 @@ export function renderOrderSummary() {
     const deliveryDate = today.add(deliveryOption.deliveryDays, "days");
     const dateString = deliveryDate.format("dddd,MMMM D");
 
-    cartSummaryHTML += `<div class="cart-item-container js-cart-item-container-${
+    cartSummaryHTML += `<div class="cart-
+item-container js-order-summary js-cart-item-container  js-cart-item-container-${
       matchingProduct.id
     }">
             <div class="delivery-date">
               Delivery date: ${dateString}
             </div>
-
             <div class="cart-item-details-grid">
               <img class="product-image"
                 src="${matchingProduct.image}">
@@ -37,9 +38,9 @@ export function renderOrderSummary() {
                   ${matchingProduct.name}
                 </div>
                 <div class="product-price">
-                  ₹${matchingProduct.priceCents}
+                  $${formatCurrency(matchingProduct.priceCents)}
                 </div>
-                <div class="product-quantity">
+                <div class="product-quantity js-product-quantity-${matchingProduct.id}">
                   <span>
                     Quantity: <span class="quantity-label">${
                       cartItem.quantity
@@ -50,7 +51,7 @@ export function renderOrderSummary() {
                   </span>
                   <span data-product-id = "${
                     matchingProduct.id
-                  }" class="delete-quantity-link link-primary js-delete-link">
+                  }" class="delete-quantity-link link-primary js-delete-link js-delete-link-${matchingProduct.id}">
                     Delete
                   </span>
                 </div>
